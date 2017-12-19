@@ -1,0 +1,84 @@
+label{
+  display: block;
+  text-align: center;
+  font-size: 50px;
+  font-family: sans-serif;
+  border: none;
+  width:500px;
+  height:40px;
+  padding: 10px;
+  margin-bottom: 17px;
+}
+button{
+  margin: 10px;
+  border-radius: 10px;
+  padding:5px;
+  font-size: 50px;
+  font-family: serif;
+  width:110px;
+  height:110px;
+  box-shadow: 5px 10px 10px darkGray;
+}
+button[type="reset"]{
+  background-color: rgb(13, 190, 9);
+  padding: 10px 0px 0px 0px;
+  margin-top:20px 0px 0px 0px;
+  font-family: sans-serif;
+  font-size: 20px;
+  width: 200px;
+  height: 70px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 0px;
+}
+.startgamebutton{
+  background-color: rgb(13, 190, 9);
+  padding: 10px;
+  margin:20px;
+  border: 0px;
+  font-family: sans-serif;
+  font-size: 20px;
+  width: 200px;
+  height: 60px;
+  border-radius: 5px;
+  box-shadow: 0px 0px;
+}
+.homepage{
+  padding:300px 675px 300px 00px;
+}
+.mainBlock{
+  background-color: white;
+  background-image: url('');
+  display: inline-block;
+  padding: 80px 0px 80px 0px;
+  border-top: 5px solid rgb(255, 8, 104);
+  margin :60px 20px 100px 580px;
+  border-radius: 5px;
+  border-left: 1px solid lightGray;
+  border-right: 0px;
+  box-shadow: 5px 10px 10px darkGray;
+}
+.summaryBlock{
+  background-color: white;
+  border-top: 5px solid rgb(0, 0, 0);
+  border-bottom: 5px solid rgb(0, 0, 0);
+  border-radius: 5px;
+  border-left: 1px solid lightGray;
+  border-right: 0px;
+  box-shadow: 5px 10px 10px darkGray;
+  padding: 30px 40px 30px 40px;
+  margin-left: 20px;
+}
+
+#homepage{
+  background-image: url('../wordrush.jpg');
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+.summary{
+  font-family: sans-serif;
+  font-size: 20px;
+  width:50px;
+}
+h2{
+  padding-bottom: 20px;
+}
