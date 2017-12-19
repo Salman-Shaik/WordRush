@@ -1,3 +1,5 @@
+let Round=require('./round.js');
+
 const words = [
   "able", "acid", "aged", "also", "area", "army", "away", "baby", "back", "ball", "band",
   "bank", "base", "bath", "bear", "beat", "been", "beer", "bell", "belt", "best", "bill",
@@ -48,7 +50,6 @@ const words = [
   "vase", "nest", "debu", "dent", "leak", "lure", "nope", "bate", "bait", "lime", "dare"
   ,"pest"
 ];
-let Round=require('round.js');
 const Game = function() {
   this.words = words;
   this.round=new Round();
@@ -75,7 +76,7 @@ Game.prototype.getGameResult = function(){
 
 Game.prototype.getRandomWord=function(){
   let randomIndex = this.getRandomIndex(words);
-  return words[randomIndex];
+  return this.words[randomIndex];
 };
 
 Game.prototype.getRandomIndex = function(words) {

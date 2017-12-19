@@ -15,3 +15,4 @@ Round.prototype.getRoundInfo=function(){
     this.misTypings
   ];
 };
+module.exports=Round;
