@@ -7,7 +7,7 @@
 // 'node runTest.js exampleTest.js -stop ==> stops on first failure',
 // 'node runTest.js exampleTest.js -only namePart ==> runs all tests that match the namePart'
 // Below are contents of exampleTest.js, a sample test file
-//  
+//
 //-----------exampleTest.js----------------
 //	var assert = require('assert');
 //	var test = {};

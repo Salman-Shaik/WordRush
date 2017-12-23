@@ -1,5 +1,5 @@
 let assert=require('assert');
-let Game=require('../src/game.js');
+let Game=require('./game.js');
 let test={};
 exports.test=test;
 

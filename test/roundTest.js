@@ -1,5 +1,5 @@
 let assert=require('assert');
-let Round=require('../src/round.js');
+let Round=require('./round.js');
 let test={};
 exports.test=test;
 
