@@ -70,7 +70,7 @@ button[type="reset"]{
 }
 
 #homepage{
-  background-image: url('../wordrush.jpg');
+  background-image: url('wordrush.jpg');
   background-repeat: no-repeat;
   background-size: 100%;
 }
