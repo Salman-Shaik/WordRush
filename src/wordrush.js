@@ -45,19 +45,18 @@ const words = [
   "were", "west", "what", "when", "whom", "wide", "wife", "wild", "will", "wind", "wine",
   "wing", "wire", "wise", "wish", "with", "wood", "word", "wore", "work", "wolf",
   "yard", "yeah", "year", "your", "zero", "park", "zone", "sink", "tide", "liar", "seal",
-  "vase", "nest", "debu", "dent", "leak", "lure", "nope", "bate", "bait", "lime", "dare"
-  ,"pest"
+  "vase", "nest", "debu", "dent", "leak", "lure", "nope", "bate", "bait", "lime", "dare", "pest"
 ];
 
-const Round=function(){
-  this.score=0;
-  this.correctWords=0;
-  this.wrongWords=0;
-  this.totalWords=0;
-  this.misTypings=0;
+const Round = function() {
+  this.score = 0;
+  this.correctWords = 0;
+  this.wrongWords = 0;
+  this.totalWords = 0;
+  this.misTypings = 0;
 };
 
-Round.prototype.getRoundInfo=function(){
+Round.prototype.getRoundInfo = function() {
   return [
     this.score,
     this.totalWords,
@@ -66,7 +65,9 @@ Round.prototype.getRoundInfo=function(){
     this.misTypings
   ];
 };
-
+Round.prototype.attemptsLeft = function() {
+  return this.wrongWords < 9;
+};
 const getDashes = function(number) {
   let dashes = "";
   while (number > 0) {
@@ -78,12 +79,12 @@ const getDashes = function(number) {
 
 const Game = function() {
   this.words = words;
-  this.round=new Round();
-  this.currentWord= "";
+  this.round = new Round();
+  this.currentWord = "";
 };
 
-Game.prototype.pickAWord=function(){
-  this.currentWord=this.getRandomWord();
+Game.prototype.pickAWord = function() {
+  this.currentWord = this.getRandomWord();
 };
 
 Game.prototype.isCorrect = function(word) {
@@ -92,15 +93,15 @@ Game.prototype.isCorrect = function(word) {
 };
 
 Game.prototype.updateScore = function() {
-  this.round.score+=4;
+  this.round.score += 4;
   this.round.correctWords++;
 };
 
-Game.prototype.getGameResult = function(){
+Game.prototype.getGameResult = function() {
   return this.round.getRoundInfo();
 };
 
-Game.prototype.getRandomWord=function(){
+Game.prototype.getRandomWord = function() {
   let randomIndex = this.getRandomIndex(words);
   return words[randomIndex];
 };
@@ -109,17 +110,21 @@ Game.prototype.getRandomIndex = function(words) {
   return Math.floor(Math.random() * words.length);
 };
 
-Game.prototype.updateTypos=function(words){
+Game.prototype.updateTypos = function(words) {
   this.round.misTypings++;
 };
 
-Game.prototype.getScore=function(){
+Game.prototype.getScore = function() {
   return this.round.score;
 };
 
-Game.prototype.updateWrongWords=function() {
+Game.prototype.updateWrongWords = function() {
   this.round.wrongWords++;
-}
+};
+
+Game.prototype.anyAttemptsLeft = function() {
+  return this.round.attemptsLeft();
+};
 // ---------------------------------------
 // ---------------------------------------
 // ---------------------------------------
@@ -130,13 +135,13 @@ let game = new Game();
 
 const shuffleCharacters = function(word) {
   var parts = word.split('');
-    for (var i = parts.length; i > 0;) {
-        var random = parseInt(Math.random() * i);
-        var temp = parts[--i];
-        parts[i] = parts[random];
-        parts[random] = temp;
-    }
-    return parts.join('');
+  for (var i = parts.length; i > 0;) {
+    var random = parseInt(Math.random() * i);
+    var temp = parts[--i];
+    parts[i] = parts[random];
+    parts[random] = temp;
+  }
+  return parts.join('');
 };
 
 const displayScore = function() {
@@ -144,8 +149,8 @@ const displayScore = function() {
   display.innerText = "Score:" + game.getScore();
 };
 
-const getGameInfo=function(){
- return game.getGameResult();
+const getGameInfo = function() {
+  return game.getGameResult();
 }
 
 let action = {};
@@ -159,6 +164,9 @@ action.Correct = function() {
 };
 
 action.Wrong = function() {
+  if(!game.anyAttemptsLeft()){
+    this.GameOver();
+  }
   game.updateWrongWords();
   initializeText();
   initializeSummaryBlock();
@@ -169,13 +177,18 @@ action.isOn = function() {
   displayScore();
 };
 
+action.GameOver=function() {
+  initializeSummaryBlock();
+  reloadGame();
+  alert("GAME OVER!!");
+};
 const isCompleted = function() {
-  let mainText=document.getElementById("mainText").innerText;
+  let mainText = document.getElementById("mainText").innerText;
   return !mainText.includes('-');
 };
 
 const getGameStatus = function() {
-  let mainText=document.getElementById("mainText").innerText;
+  let mainText = document.getElementById("mainText").innerText;
   let gameStatus = "";
   if (isCompleted()) {
     game.isCorrect(mainText) ? gameStatus = "Correct" : gameStatus = "Wrong";
@@ -238,18 +251,18 @@ const handleKeyPressEvent = function(event) {
   handleInput(event);
 };
 
-const initializeSummaryBlock=function() {
-  let summary=getGameInfo();
-  let score=document.getElementById('score');
-  let attempted=document.getElementById('attempted');
-  let correct_ones=document.getElementById('correct_ones');
-  let wrong_ones=document.getElementById('wrong_ones');
-  let typos=document.getElementById('typos');
-  score.innerText=summary[0];
-  attempted.innerText=summary[1];
-  correct_ones.innerText=summary[2];
-  wrong_ones.innerText=summary[3];
-  typos.innerText=summary[4];
+const initializeSummaryBlock = function() {
+  let summary = getGameInfo();
+  let score = document.getElementById('score');
+  let attempted = document.getElementById('attempted');
+  let correct_ones = document.getElementById('correct_ones');
+  let wrong_ones = document.getElementById('wrong_ones');
+  let typos = document.getElementById('typos');
+  score.innerText = summary[0];
+  attempted.innerText = summary[1];
+  correct_ones.innerText = summary[2];
+  wrong_ones.innerText = summary[3];
+  typos.innerText = summary[4];
 };
 
 const initializeText = function() {
